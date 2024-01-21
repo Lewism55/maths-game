@@ -35,6 +35,35 @@ body {
   margin: 0px;
 }
 
+.back-button {
+  position: absolute;
+  top: 50px;
+  left: 25px;
+}
+
+select {
+  color: #242424;
+  background-color: #ffffffde;
+  border: none;
+  padding: 10px;
+  margin: 10px;
+  text-align: center;
+  display: inline-block;
+  transition: all 0.3s ease-in-out;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+select:hover {
+  background-color: #ffffffde;
+  color: #242424;
+}
+
+option {
+  margin: 10px;
+  padding: 10px;
+}
+
 .help {
   color: #ffffffde;
   margin: 10px;
