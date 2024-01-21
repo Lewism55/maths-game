@@ -41,10 +41,11 @@ const PlayNumber = props => (
 
 
 const StarMatch = (props) => {
-  const [stars, setStars] = useState(utils.random(1, 12));
-  const [availableNums, setAvailableNums] = useState(utils.range(1, 12));
+  const initialSecondsLeft = props.selectedDifficulty === 'easy' ? props.selectedNumber * 5 : props.selectedDifficulty === 'moderate' ? props.selectedNumber * 4 : props.selectedNumber * 3;
+  const [stars, setStars] = useState(utils.random(1, props.selectedNumber));
+  const [availableNums, setAvailableNums] = useState(utils.range(1, props.selectedNumber));
   const [candidateNums, setCandidateNums] = useState([]);
-  const [secondsLeft, setSecondsLeft] = useState([30])
+  const [secondsLeft, setSecondsLeft] = useState([initialSecondsLeft])
   //candidateNums
   //wrongNums (shouldnt be added into state because we can calculate it)
   //usedNums (shouldnt be added into state because we can calculate it from availableNums)
@@ -63,7 +64,7 @@ const StarMatch = (props) => {
      //react will invoke this function every time the component is CHANGING
   }, [secondsLeft, gameStatus]);
 
-  const score = secondsLeft * 12;
+  const score = secondsLeft * props.selectedNumber;
 
   const candidatesAreWrong = utils.sum(candidateNums) > stars;
 
@@ -95,7 +96,7 @@ const StarMatch = (props) => {
       const newAvailableNums = availableNums.filter(
         n => !newCandidateNums.includes(n)
       ); //Filtered version of available numbers by removing any candidate numbers which were used in correct answer
-      setStars(utils.randomSumIn(newAvailableNums, 12));
+      setStars(utils.randomSumIn(newAvailableNums, props.selectedNumber));
       setAvailableNums(newAvailableNums);
       setCandidateNums([]);
       //now we need to redraw stars from remaining possible stars... using our maths (DONE ABOVE)
@@ -115,7 +116,7 @@ const StarMatch = (props) => {
           }
         </div>
         <div className="right">
-          {utils.range(1, 12).map(number => (
+          {utils.range(1, props.selectedNumber).map(number => (
             <PlayNumber 
             key={number} 
             status={numberStatus(number)}
@@ -135,7 +136,17 @@ const StarMatch = (props) => {
 
 const Intro = () => {
   const [gameId, setGameId] = useState(0);
-  
+  const [selectedNumber, setSelectedNumber] = useState(5);
+  const [selectedDifficulty, setSelectedDifficulty] = useState('easy');
+
+  const handleChangeNumber = (event) => {
+    setSelectedNumber(event.target.value);
+  };
+
+  const handleChangeDifficulty = (event) => {
+    setSelectedDifficulty(event.target.value);
+  };
+
   const startCounter = () => {
    const i = 1; 
    setGameId(i);
@@ -145,23 +156,38 @@ const Intro = () => {
   if (gameId === 0) {
    return;
    } else {
-   return (<StarMatch key={gameId} startNewGame={() => setGameId(gameId + 1)}/> );
-  }
+   return (
+    <>
+    <button onClick={() => setGameId(0)}>Refresh</button>
+    <StarMatch key={gameId} selectedNumber={selectedNumber} selectedDifficulty={selectedDifficulty} startNewGame={() => setGameId(gameId + 1)}/>
+    </>
+  );}
   }
 
   return (
   <div className="home-page">
     <h1>Star Math Game</h1>
-      {gameId === 0 ? 
+      {gameId === 0 &&
       (<> <h2>How to play:</h2>
       <div>
-      <p>A random number of stars will appear in the left panel</p>
-      <p>the numbers 1 - 12 will appear in the right panel</p>
-      <p>You must click 1 or more numbers that sum to the number of stars</p>
-      <p>Use all 12 numbers before the timer runs out!</p>
+
+      <p>Welcome to the Star Game. This is a game to test your mental arithmetic.</p>
+      <p>First choose a difficulty, and a number of stars below. (more stars will be a longer and more challenging game!)</p>
+      <p>stars will appear in the left panel and numbers will appear in the right panel</p>
+      <p>You must click <b>1 or more</b> numbers that add up to the number of stars displayed</p>
+      <p>Numbers will turn blue when selected, green when used successfully and red if they won't work for the current stars</p>
+      <p>Your aim is to get all of the numbers to turn green before the timer runs out!</p>
       </div>
-      <button className="start-game-button" onClick={startCounter}>Start Game</button> </>) :
-      (<div></div>)}
+            <select value={selectedNumber} onChange={handleChangeNumber}>
+        {[...Array(16).keys()].map(i => 
+          <option key={i} value={i + 5}>{i + 5}</option>
+        )}
+      </select>
+      <select value={selectedDifficulty} onChange={handleChangeDifficulty}>
+        {['beginner', 'moderate', 'hard'].map(i => 
+          <option key={i} value={i}>{i}</option>
+        )}
+      </select><button className="start-game-button" onClick={startCounter}>Start Game</button> </>)}
       <div>{startGame()}</div>
   </div>
   );
