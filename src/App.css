@@ -32,19 +32,19 @@ body {
 
 .left {
   text-align: center;
-  width: 50%;
-  border: thin solid #ddd;
+  width: 340px;
+  border-right: thin solid #ddd;
 }
 
 .right {
   text-align: center;
   padding: 10px;
-  width: 50%;
-  border: thin solid #ddd;
+  width: 340px;
 }
 
 .star {
 	display: inline-block;
+  background-color: transparent;
   margin: 3px 15px;
   color: yellow;
 }
@@ -52,6 +52,9 @@ body {
 .star:after {
   content: "\2605";
   font-size: 45px;
+  display: inline-block;
+  animation: rotate 3s infinite;
+  text-shadow: 0 0 5px;
 }
 
 .number {
@@ -99,4 +102,16 @@ button {
 
 .restart-button {
   margin: 25px;
+}
+
+@keyframes rotate {
+  0% {
+    transform: rotate(-10deg);
+  }
+  50% {
+    transform: rotate(10deg);
+  }
+  100% {
+    transform: rotate(-10deg);
+  }
 }
