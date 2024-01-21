@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react'
+import { motion } from 'framer-motion'
 import { utils } from './Utils'
 import PlayNumber from './PlayNumber'
 import StarsDisplay from './StarsDisplay'
@@ -69,24 +70,26 @@ const StarMatch = (props) => {
     }
 
     return (
-        <div className='game'>
-            <div className='help'>Select 1 or more numbers that add up to the number of stars displayed!</div>
-            <div className='body'>
-                <div className='left'>
-                    {gameStatus !== 'active' ? (
-                        <PlayAgain gameStatus={gameStatus} startNewGame={props.startNewGame} score={score} />
-                    ) : (
-                        <StarsDisplay stars={stars} />
-                    )}
-                </div>
-                <div className='right'>
-                    {utils.range(1, props.selectedNumber).map((number) => (
-                        <PlayNumber key={number} status={numberStatus(number)} number={number} onClick={onNumberClick} />
-                    ))}
-                </div>
-            </div>
+        <motion.div className='game' initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 1 }}>
+            {gameStatus !== 'active' ? (
+                <PlayAgain gameStatus={gameStatus} startNewGame={props.startNewGame} score={score} />
+            ) : (
+                <>
+                    <div className='help'>Select 1 or more numbers that add up to the number of stars displayed!</div>
+                    <div className='flexR'>
+                        <div className='left'>
+                            <StarsDisplay stars={stars} />
+                        </div>
+                        <div className='right'>
+                            {utils.range(1, props.selectedNumber).map((number) => (
+                                <PlayNumber key={number} status={numberStatus(number)} number={number} onClick={onNumberClick} />
+                            ))}
+                        </div>
+                    </div>
+                </>
+            )}
             {gameStatus === 'active' ? <div className='timer'>Time Remaining: {secondsLeft}</div> : <div></div>}
-        </div>
+        </motion.div>
     )
 }
 

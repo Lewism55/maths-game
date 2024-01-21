@@ -1,10 +1,19 @@
 import { utils } from './Utils'
+import { motion, AnimatePresence } from 'framer-motion'
 
 const StarsDisplay = (props) => (
     <>
-        {utils.range(1, props.stars).map((starId) => (
-            <div key={starId} className='star' />
-        ))}
+        <AnimatePresence>
+            {utils.range(1, props.stars).map((starId) => (
+                <motion.div
+                    key={starId}
+                    className='star'
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    exit={{ opacity: 0 }}
+                />
+            ))}
+        </AnimatePresence>
     </>
 )
 

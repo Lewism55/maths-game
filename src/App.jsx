@@ -1,5 +1,6 @@
 import React, {useState} from 'react';
 import './App.css';
+import { motion } from 'framer-motion';
 import StarMatch from './components/StarMatch';
 
 
@@ -27,7 +28,7 @@ const App = () => {
    } else {
    return (
     <>
-    <button onClick={() => setGameId(0)}>Refresh</button>
+    <button onClick={() => setGameId(0)}>Back</button>
     <StarMatch key={gameId} selectedNumber={selectedNumber} selectedDifficulty={selectedDifficulty} startNewGame={() => setGameId(gameId + 1)}/>
     </>
   );}
@@ -35,7 +36,13 @@ const App = () => {
 
   return (
   <div className="home-page">
-    <h1>Star Math Game</h1>
+              <motion.h1
+            initial={{ opacity: 0, y: -50 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 1 }}
+          >
+            Star Math Game
+          </motion.h1>
       {gameId === 0 &&
       (<> <h2>How to play:</h2>
       <div>

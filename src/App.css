@@ -1,13 +1,27 @@
 #root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
   text-align: center;
+  width: 100vw;
 }
 
 .game {
   max-width: 700px;
   margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.flexR {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.flexC {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
 body {
@@ -18,10 +32,7 @@ body {
   background-color: #242424;
   height: 100vh;
   width: 100vw;
-}
-
-.body {
-  display: flex;
+  margin: 0px;
 }
 
 .help {
@@ -65,6 +76,9 @@ body {
   margin: 10px;
   font-size: 25px;
   cursor: pointer;
+  &:hover {
+    box-shadow: 0px 0px 5px #ddd;
+  }
 }
 
 button.number {
@@ -73,6 +87,9 @@ button.number {
 
 button {
   cursor: pointer;
+  padding: 10px;
+  border-radius: 5px;
+  border: none;
 }
 
 .number:focus, .number:active {
@@ -90,6 +107,11 @@ button {
   font-size: 250%;
   font-weight: bold;
   margin: 15px;
+}
+
+.game-done {
+  width: 50%;
+
 }
 
 .home-page {
@@ -114,4 +136,10 @@ button {
   100% {
     transform: rotate(-10deg);
   }
+}
+
+h1 {
+  position: absolute;
+  top: 25px;
+  width: 100vw;
 }
