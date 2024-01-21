@@ -106,7 +106,7 @@ const StarMatch = (props) => {
   return (
     <div className="game">
       <div className="help">
-        Pick 1 or more numbers that sum to the number of stars
+        Select 1 or more numbers that add up to the number of stars displayed!
       </div>
       <div className="body">
         <div className="left">
