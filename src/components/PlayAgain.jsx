@@ -1,13 +1,13 @@
 import { motion } from 'framer-motion'
 
 const scoreLevels = [
-    { score: 600, message: "Congratulations, you're a certified Star Game Wizard!" },
-    { score: 500, message: "Amazing!... Nearly Perfect. Keep trying!" },
-    { score: 400, message: "Wow, impressive score" },
-    { score: 300, message: "You're getting good at this" },
-    { score: 200, message: "Nice work, keep trying to get a better score" },
-    { score: 100, message: "Good game, go faster to improve your score" },
-    { score: 0, message: "Well done, try a harder difficulty to get a better score"}
+    { score: 1500, message: "Congratulations, you're a certified Star Game Wizard!" },
+    { score: 1250, message: "Amazing!... Nearly Perfect. Keep trying!" },
+    { score: 900, message: "Wow, an impressive score" },
+    { score: 500, message: "You're getting good at this, if you're not on hard, try it now!" },
+    { score: 250, message: "Nice work, you've mastered the basics. Keep going!" },
+    { score: 100, message: "Good game, go faster or up the difficuly to improve your score" },
+    { score: 0, message: "Well done, try adding more stars to get a better score"}
   ];
 
 const PlayAgain = (props) => {

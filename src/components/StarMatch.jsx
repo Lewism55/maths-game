@@ -32,7 +32,8 @@ const StarMatch = (props) => {
         //react will invoke this function every time the component is CHANGING
     }, [secondsLeft, gameStatus])
 
-    const score = secondsLeft * props.selectedNumber
+    const difficultyRatio = { easy: 1, moderate: 2, hard: 3 }
+    const score = secondsLeft * props.selectedNumber * difficultyRatio[props.selectedDifficulty]
 
     const candidatesAreWrong = utils.sum(candidateNums) > stars
 
