@@ -8,9 +8,10 @@ const StarsDisplay = (props) => (
                 <motion.div
                     key={starId}
                     className='star'
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
+                    initial={{ opacity: 0, rotate: 360 }}
+                    animate={{ opacity: 1, rotate: 0 }}
                     exit={{ opacity: 0 }}
+                    transition={{ duration: 0.5 }}
                 />
             ))}
         </AnimatePresence>

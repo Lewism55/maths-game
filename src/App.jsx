@@ -42,9 +42,8 @@ const App = () => {
     return (
         <div className='home-page'>
             <motion.h1 initial={{ opacity: 0, y: -50 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 1 }}>
-                Star Math Game
+                Star Maths Game
             </motion.h1>
-            {gameId !== 0 && <button className='back-button' onClick={() => setGameId(0)}>Back to Rules & Settings</button>}
             {gameId === 0 && (
                 <>
                     {' '}
@@ -83,6 +82,11 @@ const App = () => {
                 </>
             )}
             <div>{startGame()}</div>
+            {gameId !== 0 && <div className='controls-container'>
+              <button className='back-button' onClick={() => setGameId(0)}>Back to Rules & Settings</button>
+              <button className='restart-button' onClick={() => setGameId(gameId + 1)}>Restart Game</button>
+              <div>Current Difficulty: {selectedDifficulty}</div>
+            </div>}
         </div>
     )
 }

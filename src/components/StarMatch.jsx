@@ -76,9 +76,9 @@ const StarMatch = (props) => {
             ) : (
                 <>
                     <div className='help'>Select 1 or more numbers that add up to the number of stars displayed!</div>
-                    <div className='flexR'>
+                    <div className='main'>
                         <div className='left'>
-                            <StarsDisplay stars={stars} />
+                            <StarsDisplay stars={stars} key={availableNums}/>
                         </div>
                         <div className='right'>
                             {utils.range(1, props.selectedNumber).map((number) => (

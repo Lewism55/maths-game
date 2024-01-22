@@ -1,5 +1,4 @@
 import { motion } from 'framer-motion'
-import { colors } from './Utils'
 
 const scoreLevels = [
     { score: 600, message: "Congratulations, you're a certified Star Game Wizard!" },
@@ -39,9 +38,6 @@ const PlayAgain = (props) => {
         </div>
         <div>Your Score was: {props.score}</div>
         <h3>{scoreMessage}</h3>
-        <button className='restart-button' onClick={props.startNewGame}>
-            Play Again
-        </button>
     </div>)
 }
 

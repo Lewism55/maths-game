@@ -35,10 +35,12 @@ body {
   margin: 0px;
 }
 
-.back-button {
-  position: absolute;
-  top: 50px;
-  left: 25px;
+.controls-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-top: 50px;
 }
 
 select {
@@ -87,6 +89,23 @@ option {
   background-color: transparent;
   margin: 3px 15px;
   color: yellow;
+}
+
+.main{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+@media (max-width: 600px) {
+  .main {
+    flex-direction: column;
+  }
+
+  .left {
+    border-right: none;
+    border-bottom: thin solid #ddd;
+  }
 }
 
 .star:after {
@@ -168,7 +187,6 @@ button {
 }
 
 h1 {
-  position: absolute;
-  top: 25px;
-  width: 100vw;
+  font-size: 48px;
+  font-weight: bold;
 }
